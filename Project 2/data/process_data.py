@@ -8,11 +8,24 @@ from sqlalchemy import create_engine
 
 
 def load_data(messages_filepath, categories_filepath):
+    """
+    Loads and merges datasets from 2 filepaths.
+    
+    Parameters:
+    messages_filepath: messages csv file
+    categories_filepath: categories csv file
+    
+    Returns:
+    df: dataframe containing messages_filepath and categories_filepath merged
+    
+    """
+
+
     # load messages dataset
-    messages = pd.read_csv(os.path.join('data', messages_filepath))
+    messages = pd.read_csv(messages_filepath)
 
     # load categories dataset
-    categories = pd.read_csv(os.path.join('data', categories_filepath))
+    categories = pd.read_csv(categories_filepat
 
     # merge datasets
     df = messages.merge(categories, how ='inner', on='id')
@@ -21,6 +34,14 @@ def load_data(messages_filepath, categories_filepath):
 
 
 def clean_data(df):
+    """
+    Clean the dataframe.
+    Parameters:
+    df : DataFrame
+
+    Returns:
+    df : Cleaned dataframe
+    """
     # create a dataframe of the 36 individual category columns
     categories = df['categories'].str.split(';', expand=True)
     categories.head()
