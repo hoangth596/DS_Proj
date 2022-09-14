@@ -64,6 +64,12 @@ A jupyter notebook `ML Pipeline Preparation` was used to prepare the train_class
 #### 3. Flask Web App
 The project includes a web app where an emergency worker can input a new message and get classification results in several categories. The web app will also display visualizations of the data. The outputs are shown below:
 
+![image](https://user-images.githubusercontent.com/69283201/190128456-c863edf5-e130-432c-aa35-6496332dedf0.png)
+
+![image](https://user-images.githubusercontent.com/69283201/190128550-cfa264d4-4665-4d3c-8e07-b7fe4a7515c0.png)
+
+![image](https://user-images.githubusercontent.com/69283201/190128676-8baec8d8-ad79-40e9-bc0c-9c189dab4585.png)
+
 
 ### Instructions:
 1. Run the following commands in the project's root directory to set up your database and model.
