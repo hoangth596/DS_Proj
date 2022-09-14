@@ -9,7 +9,7 @@ from sqlalchemy import create_engine
 
 def load_data(messages_filepath, categories_filepath):
     """
-    Loads and merges datasets from 2 filepaths.
+    Load datasets from 2 filepaths and merge together.
     
     Parameters:
     messages_filepath: messages csv file
@@ -25,7 +25,7 @@ def load_data(messages_filepath, categories_filepath):
     messages = pd.read_csv(messages_filepath)
 
     # load categories dataset
-    categories = pd.read_csv(categories_filepat
+    categories = pd.read_csv(categories_filepath)
 
     # merge datasets
     df = messages.merge(categories, how ='inner', on='id')
@@ -36,13 +36,14 @@ def load_data(messages_filepath, categories_filepath):
 def clean_data(df):
     """
     Clean the dataframe.
+
     Parameters:
     df : DataFrame
 
     Returns:
     df : Cleaned dataframe
     """
-    # create a dataframe of the 36 individual category columns
+    # create a dataframe of all the category columns
     categories = df['categories'].str.split(';', expand=True)
     categories.head()
 
@@ -51,7 +52,7 @@ def clean_data(df):
     category_colnames = row.applymap(lambda x: x[:-2]).iloc[0,:]
     category_colnames = category_colnames.tolist()
 
-    # rename the columns of `categories`
+    # rename the columns of `categories` dataframe
     categories.columns = category_colnames
 
     # convert categories value to 1 and 0 only
@@ -61,10 +62,12 @@ def clean_data(df):
 
         # convert column from string to numeric
         categories[column] =  categories[column].astype(int)
-    categories.head()
+    
+    # replace 2s with 1s in related column
+    categories['related'] = categories['related'].replace(to_replace=2, value=1)
 
     # drop the original categories column from `df`
-    df = df.drop(['categories'],axis = 1)
+    df = df.drop(['categories'], axis = 1, inplace = True)
 
     # concatenate the original dataframe with the new `categories` dataframe
     df = pd.concat([df,categories], axis = 1, join = 'inner')
@@ -75,9 +78,12 @@ def clean_data(df):
     return df
 
 
-def save_data(df, database_filename):
-    engine = create_engine(f'sqlite:///{database_filename}')
-    df.to_sql('disaster_categories', engine, index=False)
+def save_data(df, database_filepath):
+    """
+    Store the Dataframe in a SQLite database
+    """
+    engine = create_engine(f'sqlite:///{database_filepath}')
+    df.to_sql('disaster_messages', engine, index=False)
 
 
 def main():
