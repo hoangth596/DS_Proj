@@ -19,19 +19,24 @@ In this project, I'm given RGB photographs of either humans and dogs, and I'm re
 
 ## File Descriptions<a name="desc"></a>
 bottleneck_features
-| - DogResnet50Data.npz # ResNet-50 bottleneck features
+
+    | - DogResnet50Data.npz # ResNet-50 bottleneck features
 
 haarcascades
-| - haarcascade_frontalface_alt.xml # pre-train weights for face detector
+
+    | - haarcascade_frontalface_alt.xml # pre-train weights for face detector
 
 images # images for testing the final model
 
 requirements # list all the libraries/dependencies required to run this project
 
 saved_models # best weights of each CNN
-| - weights.best.from_scratch.hdf5
-| - weights.best.Resnet50_model.hdf5
-| - weights.best.VGG16.hdf5
+
+    | - weights.best.from_scratch.hdf5
+    
+    | - weights.best.Resnet50_model.hdf5
+    
+    | - weights.best.VGG16.hdf5
 
 dog_app.ipynb # main notebook of the project
 
