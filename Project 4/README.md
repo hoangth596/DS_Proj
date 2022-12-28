@@ -57,6 +57,8 @@ README.md
 
 4. Open the notebook dog_app.ipynb to run the prediction model.
 
+5. The main findings of the code can be found at the Medium blog available [here](https://medium.com/@hoang.th586/identify-dog-breeds-using-convolutional-neural-networks-udacity-capstone-project-cf5fbccabcf3)
+
 
 ## Licensing, Authors, Acknowledgements<a name="licensing"></a>
 The credit is all go to Udacity for the project, the data and the notebook.
